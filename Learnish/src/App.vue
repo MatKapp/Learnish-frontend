@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+      <div id="header-div">
+        <img id="header-image" src="./assets/owlLogo.png" alt="Learnish">
+        <span id="header-span">LearnishLearnishLearnishLearnishLearnish</span>
+      </div>    
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
       <hello-world message="Hey Mat"/>
       <router-view></router-view>
     </main>
@@ -34,6 +36,17 @@ body {
   color: #2c3e50;
 }
 
+#header-image {
+  margin: 5px;
+  height: 40px;
+  filter: invert(80%);
+}
+
+#header-span {
+  color: cornsilk;
+
+}
+
 main {
   text-align: center;
   margin-top: 40px;
@@ -44,11 +57,9 @@ header {
   height: 56px;
   padding: 0 16px 0 24px;
   background-color: #35495E;
-  color: #ffffff;
 }
 
 header span {
-  display: block;
   position: relative;
   font-size: 20px;
   line-height: 1;
