@@ -5,15 +5,21 @@
     </header>
     <main>
       <img src="./assets/logo.png" alt="Vue.js PWA">
+      <hello-world message="Hey Mat"/>
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-};
+  import HelloWorld from './components/HelloWorld';
+
+  export default {
+    name: 'app',
+    components: {
+      HelloWorld,
+    },
+  };
 </script>
 
 <style>
