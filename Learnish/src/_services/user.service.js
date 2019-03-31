@@ -55,7 +55,6 @@ function getAll() {
     return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
-
 function getById(id) {
     const requestOptions = {
         method: 'GET',
