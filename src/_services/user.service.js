@@ -14,13 +14,14 @@ export const userService = {
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`${config.apiUrl}/accounts/login/`, requestOptions)
         .then(handleResponse)
         .then(user => {
+            console.log(user);
             // login successful if there's a jwt token in the response
             if (user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -43,6 +44,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
+    console.log('here');
     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
 }
 
@@ -86,6 +88,7 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
+    console.log(response);
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {
