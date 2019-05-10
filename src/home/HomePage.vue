@@ -3,15 +3,9 @@
         <h1>Hi {{account.user.firstName}}!</h1>
         <p>You're logged in with Vue + Vuex & JWT!!</p>
         <h3>Users from secure api end point:</h3>
-        <em v-if="users.loading">Loading users...</em>
-        <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span>
-        <ul v-if="users.items">
-            <li v-for="user in users.items" :key="user.pk">
-                {{user.user + ' ' + user.name}}
-            </li>
-        </ul>
         <p>
             <router-link to="/login">Logout</router-link>
+            <router-link to="/words">Words</router-link>
         </p>
     </div>
 </template>
@@ -23,17 +17,7 @@ export default {
     computed: {
         ...mapState({
             account: state => state.account,
-            users: state => state.users.all
         })
     },
-    created () {
-        this.getAllUsers();
-    },
-    methods: {
-        ...mapActions('users', {
-            getAllUsers: 'getAll',
-            deleteUser: 'delete'
-        })
-    }
 };
 </script>
