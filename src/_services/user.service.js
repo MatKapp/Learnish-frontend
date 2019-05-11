@@ -18,7 +18,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`${config.apiUrl}/accounts/login/`, requestOptions)
+    return fetch(`${config.apiUrl}/auth-jwt/`, requestOptions)
         .then(handleResponse)
         .then(user => {
             console.log(user);
@@ -44,8 +44,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    console.log('here');
-    return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/signup/signup/`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
