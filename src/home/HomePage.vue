@@ -6,6 +6,7 @@
         <p>
             <router-link to="/login">Logout</router-link>
             <router-link to="/words">Words</router-link>
+            <router-link to="/wordBags">WordBags</router-link>
         </p>
     </div>
 </template>

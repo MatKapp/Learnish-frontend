@@ -1,7 +1,8 @@
 import { wordService } from '../_services';
 
 const state = {
-    all: {}
+    all: {},
+    allWordBags: {},
 };
 
 const actions = {
@@ -12,6 +13,16 @@ const actions = {
             .then(
                 words => commit('getAllSuccess', words),
                 error => commit('getAllFailure', error)
+            );
+    },
+
+    getAllWordBags({ commit }) {
+        commit('getAllWordBagsRequest');
+
+        wordService.getAllWordBags()
+            .then(
+                wordBags => commit('getAllWordBagsSuccess', words),
+                error => commit('getAllWordBagsFailure', error)
             );
     },
 
