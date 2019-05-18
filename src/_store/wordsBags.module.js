@@ -6,7 +6,7 @@ const state = {
 
 const actions = {
     getAll({ commit }) {
-        commit('getAllWordsBagsRequest');
+        commit('getAllRequest');
 
         wordsBagService.getAll()
             .then(

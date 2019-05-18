@@ -6,7 +6,7 @@
                   {{word.name + ' ' + word.spelling }}
             </div>
         </ul>
-        <add-word-page/>
+        <add-word-page :wordsBagId="1" />
     </div>
 </template>
 
@@ -21,10 +21,11 @@ export default {
         })
     },
     created () {
-        this.getAllWords();
+        var wordsBagId = 1;
+        this.getAllWords({wordsBagId});
     },
     methods: {
-        ...mapActions('word', {
+        ...mapActions('words', {
             getAllWords: 'getAll',
         })
     },

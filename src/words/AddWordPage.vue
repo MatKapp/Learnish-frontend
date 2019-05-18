@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Add word</h1>
+        <h1>Add word {{wordsBagId}}</h1>
         <form id="word-form" @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="spelling">Spelling</label>
@@ -37,6 +37,7 @@ export default {
             submitted: false
         }
     },
+    props: ["wordsBagId"],
     computed: {
         ...mapState('account', ['status'])
     },
@@ -44,9 +45,9 @@ export default {
         ...mapActions('words', ['add']),
         handleSubmit (e) {
             this.submitted = true;
-            const {language, spelling, name } = this;
-            if (language && spelling && name) {
-                this.add({ language, spelling, name })
+            const {language, spelling, name, wordsBagId } = this;
+            if (language && spelling && name && wordsBagId) {
+                this.add({ language, spelling, name , wordsBagId})
             }
         }
     }

@@ -2,35 +2,24 @@ import { wordService } from '../_services';
 
 const state = {
     all: {},
-    allWordBags: {},
 };
 
 const actions = {
-    getAll({ commit }) {
-        commit('getAllWordsRequest');
-
-        wordService.getAll()
+    getAll({ commit }, { wordsBagId }) {
+        commit('getAllRequest');
+        wordService.getAll({ wordsBagId })
             .then(
                 words => commit('getAllSuccess', words),
                 error => commit('getAllFailure', error)
             );
     },
 
-    getAllWordBags({ commit }) {
-        commit('getAllWordBagsRequest');
-
-        wordService.getAllWordBags()
+    add({ commit }, { language, spelling, name, wordsBagId }) {``
+        commit('getAllRequest');
+        console.log(spelling);
+        wordService.add({language, spelling, name, wordsBagId})
             .then(
-                wordBags => commit('getAllWordBagsSuccess', words),
-                error => commit('getAllWordBagsFailure', error)
-            );
-    },
-
-    add({ }, { language, spelling, name }) {``
-
-        wordService.add({language, spelling, name})
-            .then(
-                console.log('osom')
+                words => commit('getAllSuccess', words)
             );
     },
 };
