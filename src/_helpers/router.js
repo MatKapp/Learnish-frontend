@@ -15,8 +15,8 @@ export const router = new Router({
     { path: '/', component: HomePage },
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
-    { path: '/words/:wordsBagId', component: WordsPage },
     { path: '/wordsBags', component: WordsBagsPage },
+    { path: '/words/:wordsBagId', component: WordsPage },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }

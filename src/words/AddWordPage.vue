@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Add word</h2>F
+        <h1>Add word</h1>
         <form id="word-form" @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="spelling">Spelling</label>

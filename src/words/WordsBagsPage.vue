@@ -1,10 +1,10 @@
 <template>
     <div>
-        <p>Your word-bags {{this.$route.params.id}}:</p>
+        <p>Your word-bags:</p>
         <ul v-if="wordsBags.items">
-            <div v-for="wordsBag in wordsBags.items" :key="wordsBag.id">
-                <router-link tag="button" to="/wordsBags">
-                  {{wordsBag.id + ' ' + wordsBag.language + ' ' + wordsBag.name}}
+            <div v-for="wordsBag in wordsBags.items" :key="wordsBag.pk">
+                <router-link tag="button" :to="'/words/' + wordsBag.pk">
+                  {{wordsBag.pk + ' ' + wordsBag.language + ' ' + wordsBag.name}}
                 </router-link>
             </div>
         </ul>
