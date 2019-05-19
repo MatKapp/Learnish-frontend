@@ -14,7 +14,7 @@ const actions = {
             );
     },
 
-    add({ commit }, { language, spelling, name, wordsBagId }) {``
+    add({ commit }, { language, spelling, wordsBagId }) {``
         wordService.add({language, spelling, name, wordsBagId})
             .then(
                 function(){

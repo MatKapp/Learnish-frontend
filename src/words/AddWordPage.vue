@@ -8,11 +8,6 @@
                 <div v-show="submitted && !spelling" class="invalid-feedback">Spelling is required</div>
             </div>
             <div class="form-group">
-                <label htmlFor="name">Name</label>
-                <input type="name" v-model="name" name="name" class="form-control" :class="{ 'is-invalid': submitted && !name }" />
-                <div v-show="submitted && !name" class="invalid-feedback">Name is required</div>
-            </div>
-            <div class="form-group">
                 <label htmlFor="language">Language</label>
                 <input type="language" v-model="language" name="language" class="form-control" :class="{ 'is-invalid': submitted && !language }" />
                 <div v-show="submitted && !language" class="invalid-feedback">Language is required</div>
@@ -32,7 +27,6 @@ export default {
     data () {
         return {
             spelling: '',
-            name: '',
             language: 1,
             submitted: false
         }
@@ -47,9 +41,9 @@ export default {
         ...mapActions('words', ['add']),
         handleSubmit (e) {
             this.submitted = true;
-            const {language, spelling, name, wordsBagId } = this;
-            if (language && spelling && name && wordsBagId) {
-                this.add({ language, spelling, name , wordsBagId})
+            const {language, spelling, wordsBagId } = this;
+            if (language && spelling  && wordsBagId) {
+                this.add({ language, spelling , wordsBagId})
             }
         }
     }
