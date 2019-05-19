@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" >Add word</button>
-                <router-link to="/" class="btn btn-link">Home</router-link>
+                <router-link :to="'/words/' + this.$route.params.wordsBagId" class="btn btn-link">Home</router-link>
             </div>
         </form>
     </div>
@@ -37,7 +37,9 @@ export default {
             submitted: false
         }
     },
-    props: ["wordsBagId"],
+    created () {
+        this.wordsBagId = this.$route.params.wordsBagId;
+    },
     computed: {
         ...mapState('account', ['status'])
     },

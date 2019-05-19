@@ -6,6 +6,7 @@ import LoginPage from '../login/LoginPage'
 import RegisterPage from '../register/RegisterPage'
 import WordsPage from '../words/WordsPage'
 import WordsBagsPage from '../words/WordsBagsPage'
+import AddWordPage from '../words/AddWordPage'
 
 Vue.use(Router);
 
@@ -17,6 +18,7 @@ export const router = new Router({
     { path: '/register', component: RegisterPage },
     { path: '/wordsBags', component: WordsBagsPage },
     { path: '/words/:wordsBagId', component: WordsPage },
+    {path: '/words/:wordsBagId/addWord', component: AddWordPage},
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
