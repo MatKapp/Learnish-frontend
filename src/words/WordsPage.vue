@@ -1,8 +1,11 @@
 <template>
     <div class="list-group">
         <div class="mb-5">
-            <h3 class="d-inline">Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
-            <router-link class="float-right btn btn-outline-success" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
+            <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
+            <router-link class="btn btn-outline-secondary d-inline m-2" to='/wordsBags'>
+            Wordbags
+            </router-link>
+            <router-link class="btn btn-outline-success d-inline m-2" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
             Add a new word
             </router-link>
         </div>
