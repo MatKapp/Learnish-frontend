@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" >Add word</button>
-                <router-link :to="'/words/' + this.$route.params.wordsBagId" class="btn btn-link">Home</router-link>
+                <router-link :to="'/words/' + this.$route.params.wordsBagId" class="btn btn-link">Words bag {{this.$route.params.wordsBagId}}</router-link>
             </div>
         </form>
     </div>
