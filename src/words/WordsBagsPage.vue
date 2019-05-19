@@ -1,13 +1,13 @@
 <template>
     <div>
-        <p>Your word-bags:</p>
-        <ul v-if="wordsBags.items">
-            <div v-for="wordsBag in wordsBags.items" :key="wordsBag.pk">
-                <router-link tag="button" :to="'/words/' + wordsBag.pk">
-                  {{wordsBag.pk + ' ' + wordsBag.language + ' ' + wordsBag.name}}
+        <div class="display-3">Your wordsbags:</div>
+        <div v-if="wordsBags.items">
+            <div class="list-group" v-for="wordsBag in wordsBags.items" :key="wordsBag.pk">
+                <router-link class="word list-group-item p-3 pl-5 m-2 btn btn-outline-secondary btn-lg" :to="'/words/' + wordsBag.pk">
+                  {{'language: ' + wordsBag.language + ' name: ' + wordsBag.name}}
                 </router-link>
             </div>
-        </ul>
+        </div>
     </div>
 </template>
 

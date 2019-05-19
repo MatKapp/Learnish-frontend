@@ -27,6 +27,21 @@ const actions = {
                 }
             );
     },
+
+    remove({ commit }, { wordsBagId, wordId }) {``
+        console.log({ wordsBagId, wordId })
+        wordService.remove({ wordId })
+            .then(
+                function(){
+                    commit('getAllRequest')
+                    wordService.getAll({ wordsBagId })
+                    .then(
+                        words => commit('getAllSuccess', words),
+                        error => commit('getAllFailure', error)
+                    );
+                }
+            );
+    },
 };
 
 const mutations = {

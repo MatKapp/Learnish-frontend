@@ -2,13 +2,13 @@
     <div class="list-group">
         <div class="mb-5">
             <h3 class="d-inline">Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
-            <router-link class="float-right btn btn-outline-secondary" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
-            Add new word
+            <router-link class="float-right btn btn-outline-success" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
+            Add a new word
             </router-link>
         </div>
         <div v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
-                  <word-page :word=word></word-page>
+                  <word-page :word=word :wordsBagId=$route.params.wordsBagId></word-page>
             </div>
         </div>
     </div>
