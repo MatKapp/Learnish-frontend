@@ -3,7 +3,7 @@
         <h3>Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
         <ul v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
-                  {{word.name + ' ' + word.spelling }}
+                  {{word.spelling + ' ' + word.translation }}
             </div>
         </ul>
         <add-word-page :wordsBagId="1" />

@@ -15,11 +15,16 @@ const actions = {
     },
 
     add({ commit }, { language, spelling, name, wordsBagId }) {``
-        commit('getAllRequest');
-        console.log(spelling);
         wordService.add({language, spelling, name, wordsBagId})
             .then(
-                words => commit('getAllSuccess', words)
+                function(){
+                    commit('getAllRequest')
+                    wordService.getAll({ wordsBagId })
+                    .then(
+                        words => commit('getAllSuccess', words),
+                        error => commit('getAllFailure', error)
+                    );
+                }
             );
     },
 };
