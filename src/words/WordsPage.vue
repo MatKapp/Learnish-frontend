@@ -8,6 +8,9 @@
             <router-link class="btn btn-outline-success d-inline m-2" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
             Add a new word
             </router-link>
+            <button class="btn btn-outline-success d-inline m-2" @click="createPDF">
+                Save as PDF
+            </button>
         </div>
         <div v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
@@ -35,7 +38,28 @@ export default {
     methods: {
         ...mapActions('words', {
             getAllWords: 'getAll',
-        })
+        }),
+        createPDF(){
+            var jsPDF = require('jspdf');
+            require('jspdf-autotable');
+            let pdfName = 'wordsToLearn' + this.$route.params.wordsBagId;
+            var doc = new jsPDF();
+            var rows = [] 
+
+            this.words.items.forEach(element => {
+                var temp = [element.spelling, element.translation];
+                rows.push(temp);
+            });
+            console.log(rows);
+
+            doc.autoTable(
+                {
+                    head: [['Word', 'Translation']],
+                    body: rows,
+                }
+            );
+            doc.save(pdfName + '.pdf');
+        },
     },
     components:{
         WordPage,
