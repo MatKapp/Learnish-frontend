@@ -3,7 +3,8 @@ import { authHeader } from '../_helpers';
 import { corsheader } from '../_helpers';
 
 export const wordsBagService = {
-    getAll
+    getAll,
+    add
 };
 
 function getAll() {
@@ -15,15 +16,21 @@ function getAll() {
     return fetch(`${config.apiUrl}/word-bag/1/bags`, requestOptions).then(handleResponse);
 }
 
+function add(wordsBag) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(wordsBag)
+    };
+    return fetch(`${config.apiUrl}/word-bag/post/`, requestOptions).then(handleResponse);
+}
+
 function handleResponse(response) {
-    console.log(response);
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        console.log("udało się");
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                console.log("reload");
                 logout();
                 location.reload(true);
             }

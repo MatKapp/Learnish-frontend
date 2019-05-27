@@ -2,7 +2,7 @@
     <div>
         <div>
             <div class="display-3">Your wordsbags:</div>
-            <router-link class="btn btn-outline-success m-2" :to="'/word-bag/addWordBag'">
+            <router-link class="btn btn-outline-success m-2" :to="'/wordsBags/add'">
             Add a new wordsBag
             </router-link>
         </div>

@@ -30,20 +30,16 @@ function remove(word){
         method: 'DELETE',
         headers: authHeader()
     };
-    console.log(word)
     return fetch(`${config.apiUrl}/word/`+ word.wordId +`/delete`, requestOptions).then(handleResponse);
 }
 
 
 function handleResponse(response) {
-    console.log(response);
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        console.log("udało się");
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                console.log("reload");
                 logout();
                 location.reload(true);
             }

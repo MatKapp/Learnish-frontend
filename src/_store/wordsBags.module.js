@@ -13,7 +13,21 @@ const actions = {
                 wordsBags => commit('getAllSuccess', wordsBags),
                 error => commit('getAllFailure', error)
             );
-    }
+    },
+
+    add({ commit }, { name, language }) {``
+    wordsBagService.add({name, language})
+            .then(
+                function(){
+                    commit('getAllRequest')
+                    wordsBagService.getAll()
+                    .then(
+                        wordsBags => commit('getAllSuccess', wordsBags),
+                        error => commit('getAllFailure', error)
+                    );
+                }
+            );
+    },
 };
 
 const mutations = {

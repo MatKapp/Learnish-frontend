@@ -8,7 +8,8 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    delete: _delete,
+    getLanguages
 };
 
 function login(username, password) {
@@ -21,7 +22,6 @@ function login(username, password) {
     return fetch(`${config.apiUrl}/auth-jwt/`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            console.log(user);
             // login successful if there's a jwt token in the response
             if (user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -56,6 +56,14 @@ function getAll() {
     return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
+function getLanguages() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(`${config.apiUrl}/language`, requestOptions).then(handleResponse);
+}
 
 function getById(id) {
     const requestOptions = {
@@ -87,14 +95,11 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
-    console.log(response);
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        console.log("udało się");
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                console.log("reload");
                 logout();
                 location.reload(true);
             }

@@ -7,6 +7,7 @@ import RegisterPage from '../register/RegisterPage'
 import WordsPage from '../words/WordsPage'
 import WordsBagsPage from '../words/WordsBagsPage'
 import AddWordPage from '../words/AddWordPage'
+import AddWordsBagPage from '../words/AddWordsBagPage'
 
 Vue.use(Router);
 
@@ -17,6 +18,7 @@ export const router = new Router({
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
     { path: '/wordsBags', component: WordsBagsPage },
+    { path: '/wordsBags/add', component: AddWordsBagPage },
     { path: '/words/:wordsBagId', component: WordsPage },
     {path: '/words/:wordsBagId/addWord', component: AddWordPage},
 
@@ -30,6 +32,7 @@ router.beforeEach((to, from, next) => {
   const publicPages = ['/login', '/register'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
+  console.log(to);
 
   if (authRequired && !loggedIn) {
     return next('/login');

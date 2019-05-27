@@ -14,8 +14,8 @@ const actions = {
             );
     },
 
-    add({ commit }, { language, spelling, wordsBagId }) {``
-        wordService.add({language, spelling, name, wordsBagId})
+    add({ commit }, { spelling, wordsBagId }) {``
+        wordService.add({spelling, wordsBagId})
             .then(
                 function(){
                     commit('getAllRequest')
@@ -29,7 +29,6 @@ const actions = {
     },
 
     remove({ commit }, { wordsBagId, wordId }) {``
-        console.log({ wordsBagId, wordId })
         wordService.remove({ wordId })
             .then(
                 function(){

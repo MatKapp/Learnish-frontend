@@ -50,7 +50,6 @@ export default {
                 var temp = [element.spelling, element.translation];
                 rows.push(temp);
             });
-            console.log(rows);
 
             doc.autoTable(
                 {
