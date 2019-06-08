@@ -9,8 +9,11 @@
         <div v-if="wordsBags.items">
             <div class="list-group" v-for="wordsBag in wordsBags.items" :key="wordsBag.pk">
                 <router-link class="word list-group-item p-3 pl-5 m-2 btn btn-outline-secondary btn-lg" :to="'/words/' + wordsBag.pk">
-                  {{'language: ' + wordsBag.language + ' name: ' + wordsBag.name}}
+                  {{' name: ' + wordsBag.name}}
                 </router-link>
+                <button class="btn btn-outline-danger" @click="removeWordsBag({wordsBagId: wordsBag.pk})">
+                    Delete wordsBag
+                </button>
             </div>
         </div>
     </div>
@@ -31,6 +34,7 @@ export default {
     methods: {
         ...mapActions('wordsBags', {
             getAllWordsBags: 'getAll',
+            removeWordsBag: 'remove',
         })
     }
 };

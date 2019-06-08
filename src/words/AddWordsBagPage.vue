@@ -8,11 +8,6 @@
                 <div v-show="submitted && !name" class="invalid-feedback">Name is required</div>
             </div>
             <div class="form-group">
-                <label htmlFor="language">Language</label>
-                <input type="language" v-model="language" name="language" class="form-control" :class="{ 'is-invalid': submitted && !language }" />
-                <div v-show="submitted && !language" class="invalid-feedback">Language is required</div>
-            </div>
-            <div class="form-group">
                 <button class="btn btn-primary" type="submit" >Add wordsBag</button>
                 <router-link to='/wordsBags' class="btn btn-link">WordsBags {{this.$route.params.wordsBagId}}</router-link>
             </div>
@@ -27,7 +22,7 @@ export default {
     data () {
         return {
             name: '',
-            language: 1,
+            language: localStorage.selectedLanguageId,
             submitted: false
         }
     },
@@ -37,9 +32,10 @@ export default {
     methods: {
         ...mapActions('wordsBags', ['add']),
         handleSubmit (e) {
+            console.log(this.language);
             this.submitted = true;
             const {name, language} = this;
-            if (name && language) {
+            if (name && this.language) {
                 this.add({ name, language});
                 document.getElementById('wordsBag-form').reset();
             }

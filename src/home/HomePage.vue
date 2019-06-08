@@ -8,16 +8,13 @@
                 <h3>
                     Language:
                 </h3>
-                <v-select :options="languages.items" :reduce="item => item.name" label="name" :value="selectedLanguage"></v-select>
+                <v-select :options="languages.items" :reduce="item => item.name" label="name" @input="onChange"></v-select>
             </div>
         </div>
         <div class="m-5">
             <router-link class=" d-inline word list-group-item p-4 m-3 btn btn-outline-secondary btn-lg" to="/login">Logout</router-link>
             <router-link class=" d-inline word list-group-item p-4 m-3 btn btn-outline-secondary btn-lg" to="/wordsBags">WordsBags</router-link>
         </div>
-        Wybrany
-            {{selectedLanguage}}
-            Wybrany
     </div>
 </template>
 
@@ -29,7 +26,6 @@ export default {
     computed: {
         ...mapState({
             languages: state => state.users.languages,
-            selectedLanguage: state => state.users.selectedLanguage,
         })
     },
     created () {
@@ -39,7 +35,14 @@ export default {
         ...mapActions('users', {
             getLanguages: 'getLanguages',
             setLangueage: 'setLanguage'
-        })
+        }),
+        onChange(val) {
+            var selectedLanguage = this.languages.items.find(
+                language => language.name == val
+            )
+
+            localStorage.setItem("selectedLanguageId", selectedLanguage.pk)
+        },
     },
     components: {
         vSelect

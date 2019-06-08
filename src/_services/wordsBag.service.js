@@ -4,7 +4,8 @@ import { corsheader } from '../_helpers';
 
 export const wordsBagService = {
     getAll,
-    add
+    add,
+    remove
 };
 
 function getAll() {
@@ -24,6 +25,15 @@ function add(wordsBag) {
     };
     return fetch(`${config.apiUrl}/word-bag/post/`, requestOptions).then(handleResponse);
 }
+
+function remove(wordsBag){
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
+    return fetch(`${config.apiUrl}/word-bag/`+ wordsBag.wordsBagId +`/delete`, requestOptions).then(handleResponse);
+}
+
 
 function handleResponse(response) {
     return response.text().then(text => {

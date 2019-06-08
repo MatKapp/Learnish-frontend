@@ -1,4 +1,5 @@
 import { wordsBagService } from '../_services';
+import { words } from './words.module';
 
 const state = {
     all: {}
@@ -6,11 +7,13 @@ const state = {
 
 const actions = {
     getAll({ commit }) {
+        let languageId = localStorage.selectedLanguageId;
         commit('getAllRequest');
-
-        wordsBagService.getAll()
+        wordsBagService.getAll( )
             .then(
-                wordsBags => commit('getAllSuccess', wordsBags),
+                wordsBags => commit('getAllSuccess', wordsBags.filter(
+                    wordBag => wordBag.language == languageId
+                )),
                 error => commit('getAllFailure', error)
             );
     },
@@ -28,6 +31,20 @@ const actions = {
                 }
             );
     },
+
+    remove({ commit }, { wordsBagId }) {``
+    wordsBagService.remove({ wordsBagId })
+        .then(
+            function(){
+                commit('getAllRequest')
+                wordsBagService.getAll(localStorage.selectedLanguageId)
+                .then(
+                    wordsBags => commit('getAllSuccess', wordsBags),
+                    error => commit('getAllFailure', error)
+                );
+            }
+        );
+},
 };
 
 const mutations = {
