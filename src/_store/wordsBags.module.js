@@ -1,7 +1,8 @@
-import { wordsBagService } from '../_services';
+import {wordsBagService, wordService} from '../_services';
 
 const state = {
-    all: {}
+    all: {},
+    forLearning: ''
 };
 
 const actions = {
@@ -16,7 +17,7 @@ const actions = {
     },
 
     add({ commit }, { name, language }) {``
-    wordsBagService.add({name, language})
+         wordsBagService.add({name, language})
             .then(
                 function(){
                     commit('getAllRequest')
@@ -26,6 +27,14 @@ const actions = {
                         error => commit('getAllFailure', error)
                     );
                 }
+            );
+    },
+    getForLearning({ commit }, { wordsBagId}) {``
+      console.log(wordsBagId);
+        wordsBagService.getForLearning({ wordsBagId })
+            .then(
+                word => state.forLearning = word.spelling,
+                error => console.log('error')
             );
     },
 };

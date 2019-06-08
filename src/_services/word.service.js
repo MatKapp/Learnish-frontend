@@ -22,7 +22,7 @@ function getAll(wordBagId) {
         method: 'GET',
         headers: authHeader()
     };
-    return fetch(`${config.apiUrl}/word-bag/`+ wordBagId.wordsBagId +`/words`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/word-bag/`+ wordBagId.wordsBagId +`/words/`, requestOptions).then(handleResponse);
 }
 
 function remove(word){
@@ -30,9 +30,8 @@ function remove(word){
         method: 'DELETE',
         headers: authHeader()
     };
-    return fetch(`${config.apiUrl}/word/`+ word.wordId +`/delete`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/word/`+ word.wordId +`/delete/`, requestOptions).then(handleResponse);
 }
-
 
 function handleResponse(response) {
     return response.text().then(text => {

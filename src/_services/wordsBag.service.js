@@ -4,7 +4,8 @@ import { corsheader } from '../_helpers';
 
 export const wordsBagService = {
     getAll,
-    add
+    add,
+    getForLearning
 };
 
 function getAll() {
@@ -13,7 +14,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/word-bag/1/bags`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/word-bag/1/bags/`, requestOptions).then(handleResponse);
 }
 
 function add(wordsBag) {
@@ -23,6 +24,15 @@ function add(wordsBag) {
         body: JSON.stringify(wordsBag)
     };
     return fetch(`${config.apiUrl}/word-bag/post/`, requestOptions).then(handleResponse);
+}
+
+function getForLearning(wordsBagId) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    wordsBagId = 8;
+    return fetch(`${config.apiUrl}/word-bag/${wordsBagId}/chose_word/`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

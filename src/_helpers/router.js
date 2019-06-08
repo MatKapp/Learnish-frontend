@@ -8,6 +8,7 @@ import WordsPage from '../words/WordsPage'
 import WordsBagsPage from '../words/WordsBagsPage'
 import AddWordPage from '../words/AddWordPage'
 import AddWordsBagPage from '../words/AddWordsBagPage'
+import LearnPage from '../words/LearnPage'
 
 Vue.use(Router);
 
@@ -17,6 +18,7 @@ export const router = new Router({
     { path: '/', component: HomePage },
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
+    { path: '/learn', component: LearnPage },
     { path: '/wordsBags', component: WordsBagsPage },
     { path: '/wordsBags/add', component: AddWordsBagPage },
     { path: '/words/:wordsBagId', component: WordsPage },

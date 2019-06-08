@@ -1,7 +1,7 @@
 import { wordService } from '../_services';
 
 const state = {
-    all: {},
+   all: {},
 };
 
 const actions = {
