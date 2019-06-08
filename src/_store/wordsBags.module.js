@@ -11,9 +11,7 @@ const actions = {
         commit('getAllRequest');
         wordsBagService.getAll( )
             .then(
-                wordsBags => commit('getAllSuccess', wordsBags.filter(
-                    wordBag => wordBag.language == languageId
-                )),
+                wordsBags => commit('getAllSuccess', wordsBags),
                 error => commit('getAllFailure', error)
             );
     },

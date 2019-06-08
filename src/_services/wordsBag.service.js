@@ -14,7 +14,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/word-bag/1/bags`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/word-bag/${localStorage.selectedLanguageId}/bags`, requestOptions).then(handleResponse);
 }
 
 function add(wordsBag) {
