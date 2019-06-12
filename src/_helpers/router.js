@@ -22,6 +22,7 @@ export const router = new Router({
     { path: '/wordsBags/add', component: AddWordsBagPage },
     { path: '/words/:wordsBagId', component: WordsPage },
     {path: '/wordsBags/:wordsBagId/manage', component: WordsBagManage},
+    {path: '/words/:wordsBagId/addWord', component: AddWordPage},
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }

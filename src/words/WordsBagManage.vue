@@ -18,17 +18,28 @@
             </div>
         </div>
     </div>
+
     <div class="list-group" id="right-list">
         <div class="mb-5 ml-5 mr-5">
             <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
         </div>
+        <router-link class="btn btn-outline-success d-inline m-2" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
+            Add a new word
+            </router-link>
         <div v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
+                <div>
                   <word-page :word=word :wordsBagId=$route.params.wordsBagId></word-page>
+                </div>
+                <div>
+                    <button class="btn btn-outline-danger" @click="removeWord({wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
+                        Delete word
+                    </button>
+                </div>
+            </div>
             </div>
         </div>
     </div>
-    </div>    
 </template>
 
 <script>
@@ -36,7 +47,7 @@ import { mapState, mapActions } from 'vuex'
 import AddWordPage from './AddWordPage'
 import WordPage from './WordPage'
 import vSelect from 'vue-select'
-import { wordService } from '../_services';
+import { wordService, wordsBagService } from '../_services';
 
 export default {
     computed: {
@@ -49,17 +60,22 @@ export default {
         return {
             tempWords: [],
             selectedWordsBagId: 0,
+            rightIsMain: false,
+            leftIsMain: false,
+            wordsBagsLoaded: false,
         }
     },
     created () {
         var wordsBagId = this.$route.params.wordsBagId;
         this.getAllWords({wordsBagId});
+
         this.getAllWordsBags();
     },
     methods: {
         ...mapActions('words', {
             getAllWords: 'getAll',
             moveWord: 'moveWord',
+            removeWord: 'remove',
         }),
         ...mapActions('wordsBags',{
             getAllWordsBags: 'getAll',
@@ -92,7 +108,27 @@ export default {
                 console.log(result);
                 this.tempWords = result;                
             });
+
         },
+
+        // isRightWordsBagMain(){
+        //     let wordsBags;
+        //     if (!this.wordsBagsLoaded){
+        //         wordsBagService.getAll()
+        //         .then((result) => {
+        //             this.tempWordsBags = result;                
+        //         });
+        //         this.wordsBagsLoaded = true;
+        //         console.log(this.tempWordsBags);
+        //     }
+
+        //     var wordsBagId = this.$route.params.wordsBagId;
+        //     let selectedWordsBag = this.tempWordsBags.find(
+        //         wordsBag => wordsBag.pk == wordsBagId
+        //     );
+
+        //     return selectedWordsBag.name == 'main'
+        // },
     },
     components:{
         WordPage,
