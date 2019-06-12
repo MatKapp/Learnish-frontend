@@ -5,7 +5,7 @@ import { corsheader } from '../_helpers';
 export const wordsBagService = {
     getAll,
     add,
-    remove
+    remove,
 };
 
 function getAll() {
@@ -25,6 +25,8 @@ function add(wordsBag) {
     };
     return fetch(`${config.apiUrl}/word-bag/post/`, requestOptions).then(handleResponse);
 }
+
+
 
 function remove(wordsBag){
     const requestOptions = {

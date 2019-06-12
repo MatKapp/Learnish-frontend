@@ -28,6 +28,20 @@ const actions = {
             );
     },
 
+    moveWord({ commit }, {bag_from, bag_to , word_pks }) {``
+    wordService.moveWord({bag_from, bag_to, word_pks})
+        .then(
+            function(){
+                commit('getAllRequest')
+                wordService.getAll({ wordsBagId: bag_to })
+                .then(
+                    words => commit('getAllSuccess', words),
+                    error => commit('getAllFailure', error)
+                );
+            }
+        );
+    },
+
     remove({ commit }, { wordsBagId, wordId }) {``
         wordService.remove({ wordId })
             .then(

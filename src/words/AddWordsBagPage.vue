@@ -32,7 +32,6 @@ export default {
     methods: {
         ...mapActions('wordsBags', ['add']),
         handleSubmit (e) {
-            console.log(this.language);
             this.submitted = true;
             const {name, language} = this;
             if (name && this.language) {

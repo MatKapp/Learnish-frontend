@@ -1,4 +1,4 @@
-import { wordsBagService } from '../_services';
+import { wordsBagService,  } from '../_services';
 import { words } from './words.module';
 
 const state = {
@@ -28,6 +28,8 @@ const actions = {
                 }
             );
     },
+
+    
 
     remove({ commit }, { wordsBagId }) {``
     wordsBagService.remove({ wordsBagId })

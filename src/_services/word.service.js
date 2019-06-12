@@ -5,7 +5,8 @@ import { corsheader } from '../_helpers';
 export const wordService = {
     add,
     getAll,
-    remove
+    remove,
+    moveWord
 };
 
 function add(word) {
@@ -15,6 +16,15 @@ function add(word) {
         body: JSON.stringify(word)
     };
     return fetch(`${config.apiUrl}/word-bag/` + word.wordsBagId +`/add_word/`, requestOptions).then(handleResponse);
+}
+
+function moveWord(data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+    return fetch(`${config.apiUrl}/word-bag/move_words/`, requestOptions).then(handleResponse);
 }
 
 function getAll(wordBagId) {
