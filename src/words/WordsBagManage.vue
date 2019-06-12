@@ -1,16 +1,25 @@
 <template>
-    <div class="list-group">
-        <div class="mb-5">
+    <div id='wrapper'>
+        <div class="list-group" id="left-list">
+        <div class="mb-5 ml-5 mr-5">
             <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
             <router-link class="btn btn-outline-secondary d-inline m-2" to='/wordsBags'>
             Wordbags
             </router-link>
-            <router-link class="btn btn-outline-success d-inline m-2" :to="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'">
-            Manage wordsBag
-            </router-link>
-            <button class="btn btn-outline-success d-inline m-2" @click="createPDF">
-                Save as PDF
-            </button>
+        </div>
+        <div v-if="words.items">
+            <div v-for="word in words.items" :key="word.id">
+                  <word-page :word=word :wordsBagId=$route.params.wordsBagId>
+                  </word-page>
+                  <button :id=collapse_id(word.pk) @click="move_word">
+                          Move word
+                  </button>
+            </div>
+        </div>
+    </div>
+    <div class="list-group" id="right-list">
+        <div class="mb-5 ml-5 mr-5">
+            <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
         </div>
         <div v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
@@ -18,6 +27,7 @@
             </div>
         </div>
     </div>
+    </div>    
 </template>
 
 <script>
@@ -59,9 +69,33 @@ export default {
             );
             doc.save(pdfName + '.pdf');
         },
+        collapse_id(id){
+            console.log('collapse id');
+            console.log(id);
+            return 'move_word_' + id
+        },
+        move_word(event){
+            //replace all non-digits with nothing
+            let word_id = event.target.id.replace( /^\D+/g, '');;
+            console.log(word_id);
+        },
     },
     components:{
         WordPage,
     }
 };
 </script>
+
+<style>
+#wrapper {
+    display: flex;
+    width: 1000px;
+}
+#left-list {
+    width: 50%;
+}
+#right-list {
+    flex: 1;
+    width: 50%;
+}
+</style>

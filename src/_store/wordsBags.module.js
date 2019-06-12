@@ -7,7 +7,6 @@ const state = {
 
 const actions = {
     getAll({ commit }) {
-        let languageId = localStorage.selectedLanguageId;
         commit('getAllRequest');
         wordsBagService.getAll( )
             .then(

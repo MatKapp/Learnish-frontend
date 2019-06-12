@@ -7,11 +7,6 @@
                 <input type="text" v-model="spelling" name="spelling" class="form-control" :class="{ 'is-invalid': submitted && !spelling }" />
                 <div v-show="submitted && !spelling" class="invalid-feedback">Spelling is required</div>
             </div>
-            <!-- <div class="form-group">
-                <label htmlFor="language">Language</label>
-                <input type="language" v-model="language" name="language" class="form-control" :class="{ 'is-invalid': submitted && !language }" />
-                <div v-show="submitted && !language" class="invalid-feedback">Language is required</div>
-            </div> -->
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" >Add word</button>
                 <router-link :to="'/words/' + this.$route.params.wordsBagId" class="btn btn-link">Words bag {{this.$route.params.wordsBagId}}</router-link>

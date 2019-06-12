@@ -9,11 +9,11 @@
             <div class="d-inline list-group-item-text">
                 {{word.translation}}
             </div>
-            <div class="d-inline float-right">
+            <!-- <div class="d-inline float-right">
                 <button class="btn btn-outline-danger" @click="removeWord({wordsBagId: wordsBagId, wordId: word.pk})">
                     Delete word
                 </button>
-            </div>
+            </div> -->
       </div>
     </div> 
 </template>
