@@ -3,18 +3,21 @@
         <div class="mb-5">
             <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
             <router-link class="btn btn-outline-secondary d-inline m-2" to='/wordsBags'>
-            Wordbags
+                Wordbags
             </router-link>
             <router-link class="btn btn-outline-success d-inline m-2" :to="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'">
-            Manage wordsBag
+                Manage wordsBag
             </router-link>
             <button class="btn btn-outline-success d-inline m-2" @click="createPDF">
                 Save as PDF
             </button>
+            <router-link class="btn btn-outline-success d-inline m-2" :to="'/wordsBags/' + this.$route.params.wordsBagId + '/learn'">
+                Learn wordsbag
+            </router-link>
         </div>
         <div v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
-                  <word-page :word=word :wordsBagId=$route.params.wordsBagId></word-page>
+                  <word-page :word=word withTranslation='true' :wordsBagId=$route.params.wordsBagId></word-page>
             </div>
         </div>
     </div>

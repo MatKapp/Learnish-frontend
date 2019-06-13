@@ -2,6 +2,7 @@ import { wordService } from '../_services';
 
 const state = {
     all: {},
+    wordToGuess: {},
 };
 
 const actions = {
@@ -10,6 +11,14 @@ const actions = {
         wordService.getAll({ wordsBagId })
             .then(
                 words => commit('getAllSuccess', words),
+                error => commit('getAllFailure', error)
+            );
+    },
+
+    getWordToGuess({ commit }, { wordsBagId }) {
+        wordService.getWordToGuess({ wordsBagId })
+            .then(
+                wordToGuess => commit('getWordToGuess', wordToGuess),
                 error => commit('getAllFailure', error)
             );
     },
@@ -24,6 +33,18 @@ const actions = {
                         words => commit('getAllSuccess', words),
                         error => commit('getAllFailure', error)
                     );
+                }
+            );
+    },
+
+    reactToGuess({ commit }, { answer, wordId, wordsBagId }) {``
+        wordService.reactToGuess({answer, wordId})
+            .then(() => {
+                wordService.getWordToGuess({ wordsBagId })
+                .then(
+                    wordToGuess => commit('getWordToGuess', wordToGuess),
+                    error => commit('getAllFailure', error)
+                );
                 }
             );
     },
@@ -66,6 +87,9 @@ const mutations = {
     },
     getAllFailure(state, error) {
         state.all = { error };
+    },
+    getWordToGuess(state, word){
+        state.wordToGuess = {word: word}
     }
 };
 

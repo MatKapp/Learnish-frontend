@@ -6,7 +6,9 @@ export const wordService = {
     add,
     getAll,
     remove,
-    moveWord
+    moveWord,
+    getWordToGuess,
+    reactToGuess
 };
 
 function add(word) {
@@ -16,6 +18,15 @@ function add(word) {
         body: JSON.stringify(word)
     };
     return fetch(`${config.apiUrl}/word-bag/` + word.wordsBagId +`/add_word/`, requestOptions).then(handleResponse);
+}
+
+function reactToGuess(answer) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(answer)
+    };
+    return fetch(`${config.apiUrl}/word/` + answer.wordId +`/react_to_guess/`, requestOptions).then(handleResponse);
 }
 
 function moveWord(data) {
@@ -33,6 +44,14 @@ function getAll(wordBagId) {
         headers: authHeader()
     };
     return fetch(`${config.apiUrl}/word-bag/`+ wordBagId.wordsBagId +`/words`, requestOptions).then(handleResponse);
+}
+
+function getWordToGuess(wordBagId) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(`${config.apiUrl}/word-bag/`+ wordBagId.wordsBagId +`/chose_word`, requestOptions).then(handleResponse);
 }
 
 function remove(word){

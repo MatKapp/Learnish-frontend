@@ -6,14 +6,9 @@
             <strong class="list-group-item-heading">{{word.spelling}}</strong> <small>{{word.translation}}</small>
             </p>
         </div>
-            <div class="d-inline list-group-item-text">
+            <div v-if="withTranslation == 'true'" class="d-inline list-group-item-text">
                 {{word.translation}}
             </div>
-            <!-- <div class="d-inline float-right">
-                <button class="btn btn-outline-danger" @click="removeWord({wordsBagId: wordsBagId, wordId: word.pk})">
-                    Delete word
-                </button>
-            </div> -->
       </div>
     </div> 
 </template>
@@ -22,7 +17,7 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-    props: ["word", "wordsBagId"],
+    props: ["word", "wordsBagId", "withTranslation"],
     computed: {
         ...mapState({
             words: state => state.words.all
@@ -32,6 +27,9 @@ export default {
         ...mapActions('words', {
             removeWord: 'remove'
         })
+    },
+    created () {
+        console.log(this.withTranslation);
     },
 };
 </script>
