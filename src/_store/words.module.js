@@ -63,8 +63,8 @@ const actions = {
         );
     },
 
-    remove({ commit }, { wordsBagId, wordId }) {``
-        wordService.remove({ wordId })
+    remove({ commit }, { wordsBagId, bag_id, wordId }) {``
+        wordService.remove({bag_id, wordId })
             .then(
                 function(){
                     commit('getAllRequest')

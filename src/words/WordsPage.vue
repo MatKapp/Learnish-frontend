@@ -1,16 +1,21 @@
 <template>
     <div class="list-group">
+        <Slide>
+            <a id="home" href="/"> 
+                <span>Home</span>  
+            </a>
+            <a id="wordsBags" href="/wordsBags"> 
+                <span>Back to wordsBags</span>  
+            </a>
+            <a id="manageWordsBag" :href="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'"> 
+                <span>Manage wordsBag</span>  
+            </a>
+            <a id="downloadPDF" @click="createPDF"> 
+                <span>Download as pdf</span>  
+            </a>
+        </Slide>
         <div class="mb-5">
             <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
-            <router-link class="btn btn-outline-secondary d-inline m-2" to='/wordsBags'>
-                Wordbags
-            </router-link>
-            <router-link class="btn btn-outline-success d-inline m-2" :to="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'">
-                Manage wordsBag
-            </router-link>
-            <button class="btn btn-outline-success d-inline m-2" @click="createPDF">
-                Save as PDF
-            </button>
             <router-link class="btn btn-outline-success d-inline m-2" :to="'/wordsBags/' + this.$route.params.wordsBagId + '/learn'">
                 Learn wordsbag
             </router-link>
@@ -27,6 +32,7 @@
 import { mapState, mapActions } from 'vuex'
 import AddWordPage from './AddWordPage'
 import WordPage from './WordPage'
+import { Slide } from 'vue-burger-menu'
 
 export default {
     computed: {
@@ -65,6 +71,7 @@ export default {
     },
     components:{
         WordPage,
+        Slide
     }
 };
 </script>

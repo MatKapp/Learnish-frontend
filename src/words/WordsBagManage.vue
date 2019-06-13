@@ -32,7 +32,7 @@
                   <word-page :word=word :wordsBagId=$route.params.wordsBagId></word-page>
                 </div>
                 <div>
-                    <button class="btn btn-outline-danger" @click="removeWord({wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
+                    <button class="btn btn-outline-danger" @click="removeWord({bag_id: $route.params.wordsBagId, wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
                         Delete word
                     </button>
                 </div>

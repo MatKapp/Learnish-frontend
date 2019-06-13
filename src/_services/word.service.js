@@ -55,11 +55,13 @@ function getWordToGuess(wordBagId) {
 }
 
 function remove(word){
+    console.log(word);
     const requestOptions = {
         method: 'DELETE',
-        headers: authHeader()
+        headers: {...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(word)
     };
-    return fetch(`${config.apiUrl}/word/`+ word.wordId +`/delete`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/word/`+ word.wordId +`/delete/`, requestOptions).then(handleResponse);
 }
 
 

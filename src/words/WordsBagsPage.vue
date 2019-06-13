@@ -1,12 +1,17 @@
 <template>
     <div>
+        <Slide>
+            <a id="home" href="/"> 
+                <span>Home</span>  
+            </a>
+            <a id="manageWordsBag" :href="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'"> 
+                <span>Manage wordsBag</span>  
+            </a>
+        </Slide>
         <div>
             <div class="display-3">Your wordsbags:</div>
             <router-link class="btn btn-outline-success m-2" :to="'/wordsBags/add'">
             Add a new wordsBag
-            </router-link>
-            <router-link class="btn btn-outline-success m-2" :to="'/'">
-            Home
             </router-link>
         </div>
         <div v-if="wordsBags.items">
@@ -24,6 +29,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { Slide } from 'vue-burger-menu'
 
 export default {
     computed: {
@@ -39,6 +45,9 @@ export default {
             getAllWordsBags: 'getAll',
             removeWordsBag: 'remove',
         })
+    },
+    components:{
+        Slide
     }
 };
 </script>
