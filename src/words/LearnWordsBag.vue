@@ -14,13 +14,13 @@
         <div class="mb-5">
             <h3 >Learning from wordsBag:</h3>
         </div>
-        <div v-if="guessedWord.spelling != undefined" v-bind:class="[goodAnswer ? 'bg-success' : 'bg-danger']">
+        <div v-if="guessedWord.spelling != undefined" >
             <h5>
                 Previous word
             </h5>
             <div id="guessed-word">
                 <div>
-                    <word-page :word=guessedWord withTranslation='true' :wordsBagId=$route.params.wordsBagId></word-page>
+                    <word-page :word=guessedWord withTranslation='true' :wordsBagId=$route.params.wordsBagId v-bind:class="[goodAnswer ? 'list-group-item-success' : 'list-group-item-danger']"></word-page>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
             <div>
                   <word-page :word=wordToGuess withTranslation='false' :wordsBagId=$route.params.wordsBagId></word-page>
             </div>
-            <div>
+            <div class="w-50 mx-auto">
                 <div class="input-group mb-3">
                 <input id="translation-answer" type="text" class="form-control" placeholder="Translation" aria-label="Translation" aria-describedby="basic-addon2">
                     <div class="input-group-append">

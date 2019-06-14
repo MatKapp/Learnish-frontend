@@ -1,5 +1,5 @@
 <template>
-    <div class="list-group">
+    <div class="list-group ">
         <Slide>
             <a id="home" href="/"> 
                 <span>Home</span>  
@@ -14,13 +14,13 @@
                 <span>Download as pdf</span>  
             </a>
         </Slide>
-        <div class="mb-5">
-            <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
+        <div class="mb-5 mr-5">
+            <h3 >Words in the words bag:</h3>
             <router-link class="btn btn-outline-success d-inline m-2" :to="'/wordsBags/' + this.$route.params.wordsBagId + '/learn'">
                 Learn wordsbag
             </router-link>
         </div>
-        <div v-if="words.items">
+        <div v-if="words.items" class="list-group">
             <div v-for="word in words.items" :key="word.id">
                   <word-page :word=word withTranslation='true' :wordsBagId=$route.params.wordsBagId></word-page>
             </div>

@@ -4,7 +4,7 @@
             <div>
                 <h1 class="display-1">Learnish</h1>
             </div>
-            <div>
+            <div class="w-25 mx-auto">
                 <h3>
                     Language to learn:
                 </h3>

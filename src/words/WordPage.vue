@@ -1,5 +1,5 @@
 <template>  
-    <div class="word list-group-item p-3 pl-5 m-2">
+    <div class="word list-group-item p-3 pl-5 m-2 w-50 mx-auto">
       <div class="box">
         <div class="content">
             <p>
