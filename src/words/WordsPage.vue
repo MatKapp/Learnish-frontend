@@ -5,23 +5,23 @@
                 <span>Home</span>  
             </a>
             <a id="wordsBags" href="/wordsBags"> 
-                <span>Back to wordsBags</span>  
+                <span>Back to word bags</span>  
             </a>
             <a id="manageWordsBag" :href="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'"> 
-                <span>Manage wordsBag</span>  
+                <span>Manage word bags</span>  
             </a>
             <a id="downloadPDF" @click="createPDF"> 
                 <span>Download as pdf</span>  
             </a>
         </Slide>
         <div class="mb-5 mr-5">
-            <h3 >Words in the words bag:</h3>
+            <h3 >Words in the word bag:</h3>
             <router-link class="btn btn-outline-success d-inline m-2" :to="'/wordsBags/' + this.$route.params.wordsBagId + '/learn'">
-                Learn wordsbag
+                Learn word bag
             </router-link>
         </div>
-        <div v-if="words.items" class="list-group">
-            <div v-for="word in words.items" :key="word.id">
+        <div v-if="words.items" class="">
+            <div v-for="word in words.items" :key="word.id" class="d-inline-block w-25">
                   <word-page :word=word withTranslation='true' :wordsBagId=$route.params.wordsBagId></word-page>
             </div>
         </div>

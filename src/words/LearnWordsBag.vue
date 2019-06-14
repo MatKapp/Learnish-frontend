@@ -5,14 +5,14 @@
                 <span>Home</span>  
             </a>
             <a id="wordsBags" href="/wordsBags"> 
-                <span>Back to wordsBags</span>  
+                <span>Back to word bags</span>  
             </a>
             <a id="manageWordsBag" :href="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'"> 
-                <span>Manage wordsBag</span>  
+                <span>Manage word bags</span>  
             </a>
         </Slide>
         <div class="mb-5">
-            <h3 >Learning from wordsBag:</h3>
+            <h3 >Learning from word bag:</h3>
         </div>
         <div v-if="guessedWord.spelling != undefined" >
             <h5>

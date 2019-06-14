@@ -5,13 +5,15 @@
                 <span>Home</span>  
             </a>
             <a id="home" href="/wordsBags"> 
-                <span>WordsBags</span>  
+                <span>Word bags</span>  
             </a>
         </Slide>
         <div class="list-group" id="left-list">
         <div class="mb-5 ml-5 mr-5">
-            <h3 >Select source wordsBag and move words:</h3>
-            <v-select :options="wordsBags.items" :reduce="item => item.name" label="name" @input="onChange"></v-select>
+            <h3 >Select source word bag:</h3>
+            <div class="float-left w-50">
+                <v-select :options="wordsBags.items" :reduce="item => item.name" label="name" @input="onChange"></v-select>
+            </div>
         </div>
         <div v-if="tempWords">
             <div v-for="word in tempWords" :key="word.id">
@@ -25,23 +27,27 @@
     </div>
 
     <div class="list-group" id="right-list">
-        <div class="mb-5 ml-5 mr-5">
-            <h3 >Select target wordsBag:</h3>
-            <v-select :options="wordsBags.items" :reduce="item => item.name" label="name" @input="onChangeRight"></v-select>
+        <div class="mb-5 ml-5 mr-5 d-inline">
+            <h3 >Select target word bag:</h3>
+            <div>
+                <div class="float-left w-50">
+                    <v-select :options="wordsBags.items" :reduce="item => item.name" label="name" @input="onChangeRight"></v-select>
+                </div>
+                <div class="d-inline w-auto">
+                    <router-link class="btn btn-outline-success d-inline m-2" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
+                        Add word
+                    </router-link>
+                </div>
+            </div>
         </div>
-        <div class="mb-5 ml-5 mr-5">
-            <h3 >Words in the words bag:</h3>
-        </div>
-        <router-link class="btn btn-outline-success d-inline m-2" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
-            Add a new word
-            </router-link>
+
         <div v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
                 <div>
                   <word-page :word=word withTranslation='true' :wordsBagId=$route.params.wordsBagId></word-page>
                 </div>
                 <div>
-                    <button class="btn btn-outline-danger ml-2" @click="removeWord({bag_id: $route.params.wordsBagId, wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
+                    <button class="btn btn-outline-danger d-inline m-2" @click="removeWord({bag_id: $route.params.wordsBagId, wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
                         Delete word
                     </button>
                 </div>

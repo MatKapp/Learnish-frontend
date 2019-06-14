@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Add wordsBag</h1>
+        <h1>Add word bag</h1>
         <form id="wordsBag-form" @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="name">Name</label>
