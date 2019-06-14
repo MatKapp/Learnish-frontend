@@ -6,7 +6,7 @@
             </div>
             <div>
                 <h3>
-                    Language:
+                    Language to learn:
                 </h3>
                 <v-select :options="languages.items" :reduce="item => item.name" label="name" @input="onChange"></v-select>
             </div>

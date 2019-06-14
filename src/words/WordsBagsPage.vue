@@ -4,9 +4,6 @@
             <a id="home" href="/"> 
                 <span>Home</span>  
             </a>
-            <a id="manageWordsBag" :href="'/wordsBags/' + this.$route.params.wordsBagId + '/manage'"> 
-                <span>Manage wordsBag</span>  
-            </a>
         </Slide>
         <div>
             <div class="display-3">Your wordsbags:</div>

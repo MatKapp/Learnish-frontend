@@ -1,18 +1,23 @@
 <template>
     <div id='wrapper'>
+        <Slide>
+            <a id="home" href="/"> 
+                <span>Home</span>  
+            </a>
+            <a id="home" href="/wordsBags"> 
+                <span>WordsBags</span>  
+            </a>
+        </Slide>
         <div class="list-group" id="left-list">
         <div class="mb-5 ml-5 mr-5">
+            <h3 >Select wordsBag and move words:</h3>
             <v-select :options="wordsBags.items" :reduce="item => item.name" label="name" @input="onChange"></v-select>
-            <h3 >Words in the selected words bag :</h3>
-            <router-link class="btn btn-outline-secondary d-inline m-2" to='/wordsBags'>
-            Wordbags
-            </router-link>
         </div>
         <div v-if="tempWords">
             <div v-for="word in tempWords" :key="word.id">
-                  <word-page :word=word :wordsBagId=$route.params.wordsBagId>
+                  <word-page :word=word withTranslation='true' :wordsBagId=$route.params.wordsBagId>
                   </word-page>
-                  <button :id=collapse_id(word.pk) @click="move_word">
+                  <button class="btn btn-outline-secondary d-inline m-2" :id=collapse_id(word.pk) @click="move_word">
                           Move word
                   </button>
             </div>
@@ -21,7 +26,7 @@
 
     <div class="list-group" id="right-list">
         <div class="mb-5 ml-5 mr-5">
-            <h3 >Words in the words bag {{this.$route.params.wordsBagId}}:</h3>
+            <h3 >Words in the words bag:</h3>
         </div>
         <router-link class="btn btn-outline-success d-inline m-2" :to="'/words/' + this.$route.params.wordsBagId + '/addWord'">
             Add a new word
@@ -29,10 +34,10 @@
         <div v-if="words.items">
             <div v-for="word in words.items" :key="word.id">
                 <div>
-                  <word-page :word=word :wordsBagId=$route.params.wordsBagId></word-page>
+                  <word-page :word=word withTranslation='true' :wordsBagId=$route.params.wordsBagId></word-page>
                 </div>
                 <div>
-                    <button class="btn btn-outline-danger" @click="removeWord({bag_id: $route.params.wordsBagId, wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
+                    <button class="btn btn-outline-danger ml-2" @click="removeWord({bag_id: $route.params.wordsBagId, wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
                         Delete word
                     </button>
                 </div>
@@ -48,6 +53,8 @@ import AddWordPage from './AddWordPage'
 import WordPage from './WordPage'
 import vSelect from 'vue-select'
 import { wordService, wordsBagService } from '../_services';
+import { Slide } from 'vue-burger-menu'
+
 
 export default {
     computed: {
@@ -110,29 +117,11 @@ export default {
             });
 
         },
-
-        // isRightWordsBagMain(){
-        //     let wordsBags;
-        //     if (!this.wordsBagsLoaded){
-        //         wordsBagService.getAll()
-        //         .then((result) => {
-        //             this.tempWordsBags = result;                
-        //         });
-        //         this.wordsBagsLoaded = true;
-        //         console.log(this.tempWordsBags);
-        //     }
-
-        //     var wordsBagId = this.$route.params.wordsBagId;
-        //     let selectedWordsBag = this.tempWordsBags.find(
-        //         wordsBag => wordsBag.pk == wordsBagId
-        //     );
-
-        //     return selectedWordsBag.name == 'main'
-        // },
     },
     components:{
         WordPage,
-        vSelect
+        vSelect,
+        Slide
     }
 };
 </script>

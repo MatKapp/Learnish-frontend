@@ -3,7 +3,7 @@
       <div class="box">
         <div class="content">
             <p>
-            <strong class="list-group-item-heading">{{word.spelling}}</strong> <small>{{word.translation}}</small>
+            <strong class="list-group-item-heading">{{word.spelling}}</strong> <small v-if="withTranslation == 'true'">{{word.translation}}</small>
             </p>
         </div>
             <div v-if="withTranslation == 'true'" class="d-inline list-group-item-text">

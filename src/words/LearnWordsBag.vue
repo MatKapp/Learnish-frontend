@@ -13,9 +13,6 @@
         </Slide>
         <div class="mb-5">
             <h3 >Learning from wordsBag:</h3>
-            <router-link class="btn btn-outline-secondary d-inline m-2" to='/wordsBags'>
-                Select wordsBag
-            </router-link>
         </div>
         <div v-if="guessedWord.spelling != undefined" v-bind:class="[goodAnswer ? 'bg-success' : 'bg-danger']">
             <h5>

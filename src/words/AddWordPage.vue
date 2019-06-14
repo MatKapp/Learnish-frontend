@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Add word to {{wordsBagId}} wordsBag</h1>
+        <h1>Add word to wordsBag</h1>
         <form id="word-form" @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="spelling">Spelling</label>
