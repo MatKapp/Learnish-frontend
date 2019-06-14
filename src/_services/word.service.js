@@ -30,6 +30,7 @@ function reactToGuess(answer) {
 }
 
 function moveWord(data) {
+    console.log(data);
     const requestOptions = {
         method: 'POST',
         headers: {...authHeader(), 'Content-Type': 'application/json' },

@@ -10,7 +10,7 @@
         </Slide>
         <div class="list-group" id="left-list">
         <div class="mb-5 ml-5 mr-5">
-            <h3 >Select wordsBag and move words:</h3>
+            <h3 >Select source wordsBag and move words:</h3>
             <v-select :options="wordsBags.items" :reduce="item => item.name" label="name" @input="onChange"></v-select>
         </div>
         <div v-if="tempWords">
@@ -25,6 +25,10 @@
     </div>
 
     <div class="list-group" id="right-list">
+        <div class="mb-5 ml-5 mr-5">
+            <h3 >Select target wordsBag:</h3>
+            <v-select :options="wordsBags.items" :reduce="item => item.name" label="name" @input="onChangeRight"></v-select>
+        </div>
         <div class="mb-5 ml-5 mr-5">
             <h3 >Words in the words bag:</h3>
         </div>
@@ -70,10 +74,11 @@ export default {
             rightIsMain: false,
             leftIsMain: false,
             wordsBagsLoaded: false,
+            rightWordsBag: 0,
         }
     },
     created () {
-        var wordsBagId = this.$route.params.wordsBagId;
+        var wordsBagId = this.rightWordsBag;
         this.getAllWords({wordsBagId});
 
         this.getAllWordsBags();
@@ -95,11 +100,11 @@ export default {
             let word_id = event.target.id.replace( /^\D+/g, '');
             console.log(word_id);
             let word_pks = [word_id];
-            let bag_to = this.$route.params.wordsBagId;
+            let bag_to = this.rightWordsBag;
             let bag_from = this.selectedWordsBagId;
             this.moveWord({bag_from, bag_to, word_pks}).then(
                 () => {
-                    let wordsBagId = this.$route.params.wordsBagId;
+                    let wordsBagId = this.rightWordsBag;
                     this.getAllWords({wordsBagId});
                 }
             );
@@ -116,6 +121,14 @@ export default {
                 this.tempWords = result;                
             });
 
+        },
+        onChangeRight(val) {
+            var selectedWordsBag = this.wordsBags.items.find(
+                wordsBag => wordsBag.name == val
+            )
+            let wordsBagId = selectedWordsBag.pk
+            this.rightWordsBag = wordsBagId;
+            this.getAllWords({wordsBagId});
         },
     },
     components:{
