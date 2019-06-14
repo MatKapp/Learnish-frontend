@@ -1,5 +1,13 @@
 <template>
-    <div>
+    <div class="  w-25 mx-auto">
+        <Slide>
+            <a id="home" href="/"> 
+                <span>Home</span>  
+            </a>
+            <a id="home" href="/wordsBags"> 
+                <span>Word bags</span>  
+            </a>
+        </Slide>
         <h1>Add word bag</h1>
         <form id="wordsBag-form" @submit.prevent="handleSubmit">
             <div class="form-group">
@@ -8,8 +16,8 @@
                 <div v-show="submitted && !name" class="invalid-feedback">Name is required</div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" >Add wordsBag</button>
-                <router-link to='/wordsBags' class="btn btn-link">WordsBags {{this.$route.params.wordsBagId}}</router-link>
+                <button class="btn btn-primary" type="submit" >Add</button>
+                <router-link to='/wordsBags' class="btn btn-secondary">Back to word bags</router-link>
             </div>
         </form>
     </div>
@@ -17,6 +25,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { Slide } from 'vue-burger-menu'
 
 export default {
     data () {
@@ -39,6 +48,9 @@ export default {
                 document.getElementById('wordsBag-form').reset();
             }
         }
+    },
+    components: {
+        Slide
     }
 };
 </script>

@@ -20,7 +20,7 @@
                   <word-page :word=word withTranslation='true' :wordsBagId=$route.params.wordsBagId>
                   </word-page>
                   <button class="btn btn-outline-secondary d-inline m-2" :id=collapse_id(word.pk) @click="move_word">
-                          Move word
+                          Move
                   </button>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div>
                     <button class="btn btn-outline-danger d-inline m-2" @click="removeWord({bag_id: $route.params.wordsBagId, wordsBagId: $route.params.wordsBagId, wordId: word.pk})">
-                        Delete word
+                        Delete
                     </button>
                 </div>
             </div>

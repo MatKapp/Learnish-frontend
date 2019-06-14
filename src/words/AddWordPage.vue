@@ -1,6 +1,14 @@
 <template>
-    <div>
-        <h1>Add word to word bag</h1>
+    <div class="  w-25 mx-auto">
+        <Slide>
+            <a id="home" href="/"> 
+                <span>Home</span>  
+            </a>
+            <a id="home" href="/wordsBags"> 
+                <span>Word bags</span>  
+            </a>
+        </Slide>
+        <h1>Add word</h1>
         <form id="word-form" @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="spelling">Spelling</label>
@@ -8,8 +16,8 @@
                 <div v-show="submitted && !spelling" class="invalid-feedback">Spelling is required</div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" >Add word</button>
-                <router-link :to="'/words/' + this.$route.params.wordsBagId" class="btn btn-link">Words bag {{this.$route.params.wordsBagId}}</router-link>
+                <button class="btn btn-primary" type="submit" >Add</button>
+                <router-link :to="'/words/' + this.$route.params.wordsBagId" class="btn btn-secondary">Back to word bag</router-link>
             </div>
         </form>
     </div>
@@ -17,6 +25,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { Slide } from 'vue-burger-menu'
+
 
 export default {
     data () {
@@ -44,6 +54,9 @@ export default {
                 e.target.reset();
             }
         }
+    },
+    components: {
+        Slide
     }
 };
 </script>
