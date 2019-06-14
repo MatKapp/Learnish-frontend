@@ -12,7 +12,7 @@
             </router-link>
         </div>
         <div v-if="wordsBags.items">
-            <div class="list-group mb-5 mt-4 w-50 mx-auto" v-for="wordsBag in wordsBags.items" :key="wordsBag.pk">
+            <div class="list-group mb-5 mt-4 w-50 mx-auto shadow" v-for="wordsBag in wordsBags.items" :key="wordsBag.pk">
                 <router-link class="word list-group-item p-3 pl-5 m-2 btn btn-outline-secondary btn-lg" :to="'/words/' + wordsBag.pk">
                   {{' name: ' + wordsBag.name}}
                 </router-link>
