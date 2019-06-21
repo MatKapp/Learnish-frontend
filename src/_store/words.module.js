@@ -1,25 +1,79 @@
 import { wordService } from '../_services';
 
 const state = {
-    all: {}
+    all: {},
+    wordToGuess: {},
 };
 
 const actions = {
-    getAll({ commit }) {
-        commit('getAllWordsRequest');
-
-        wordService.getAll()
+    getAll({ commit }, { wordsBagId }) {
+        commit('getAllRequest');
+        wordService.getAll({ wordsBagId })
             .then(
                 words => commit('getAllSuccess', words),
                 error => commit('getAllFailure', error)
             );
     },
 
-    add({ }, { language, spelling, name }) {``
-
-        wordService.add({language, spelling, name})
+    getWordToGuess({ commit }, { wordsBagId }) {
+        wordService.getWordToGuess({ wordsBagId })
             .then(
-                console.log('osom')
+                wordToGuess => commit('getWordToGuess', wordToGuess),
+                error => commit('getAllFailure', error)
+            );
+    },
+
+    add({ commit }, { spelling, wordsBagId }) {``
+        wordService.add({spelling, wordsBagId})
+            .then(
+                function(){
+                    commit('getAllRequest')
+                    wordService.getAll({ wordsBagId })
+                    .then(
+                        words => commit('getAllSuccess', words),
+                        error => commit('getAllFailure', error)
+                    );
+                }
+            );
+    },
+
+    reactToGuess({ commit }, { answer, wordId, wordsBagId }) {``
+        wordService.reactToGuess({answer, wordId})
+            .then(() => {
+                wordService.getWordToGuess({ wordsBagId })
+                .then(
+                    wordToGuess => commit('getWordToGuess', wordToGuess),
+                    error => commit('getAllFailure', error)
+                );
+                }
+            );
+    },
+
+    moveWord({ commit }, {bag_from, bag_to , word_pks }) {``
+    wordService.moveWord({bag_from, bag_to, word_pks})
+        .then(
+            function(){
+                commit('getAllRequest')
+                wordService.getAll({ wordsBagId: bag_to })
+                .then(
+                    words => commit('getAllSuccess', words),
+                    error => commit('getAllFailure', error)
+                );
+            }
+        );
+    },
+
+    remove({ commit }, { wordsBagId, bag_id, wordId }) {``
+        wordService.remove({bag_id, wordId })
+            .then(
+                function(){
+                    commit('getAllRequest')
+                    wordService.getAll({ wordsBagId })
+                    .then(
+                        words => commit('getAllSuccess', words),
+                        error => commit('getAllFailure', error)
+                    );
+                }
             );
     },
 };
@@ -33,6 +87,9 @@ const mutations = {
     },
     getAllFailure(state, error) {
         state.all = { error };
+    },
+    getWordToGuess(state, word){
+        state.wordToGuess = {word: word}
     }
 };
 

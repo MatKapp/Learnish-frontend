@@ -1,6 +1,14 @@
 <template>
-    <div>
-        <h2>Add word</h2>F
+    <div class="  w-25 mx-auto">
+        <Slide>
+            <a id="home" href="/"> 
+                <span>Home</span>  
+            </a>
+            <a id="home" href="/wordsBags"> 
+                <span>Word bags</span>  
+            </a>
+        </Slide>
+        <h1>Add word</h1>
         <form id="word-form" @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="spelling">Spelling</label>
@@ -8,18 +16,8 @@
                 <div v-show="submitted && !spelling" class="invalid-feedback">Spelling is required</div>
             </div>
             <div class="form-group">
-                <label htmlFor="name">Name</label>
-                <input type="name" v-model="name" name="name" class="form-control" :class="{ 'is-invalid': submitted && !name }" />
-                <div v-show="submitted && !name" class="invalid-feedback">Name is required</div>
-            </div>
-            <div class="form-group">
-                <label htmlFor="language">Language</label>
-                <input type="language" v-model="language" name="language" class="form-control" :class="{ 'is-invalid': submitted && !language }" />
-                <div v-show="submitted && !language" class="invalid-feedback">Language is required</div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit" >Add word</button>
-                <router-link to="/" class="btn btn-link">Home</router-link>
+                <button class="btn btn-primary" type="submit" >Add</button>
+                <router-link :to="'/words/' + this.$route.params.wordsBagId" class="btn btn-secondary">Back to word bag</router-link>
             </div>
         </form>
     </div>
@@ -27,15 +25,19 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { Slide } from 'vue-burger-menu'
+
 
 export default {
     data () {
         return {
             spelling: '',
-            name: '',
-            language: 1,
             submitted: false
         }
+    },
+    props: ["wordsBag"],
+    created () {
+        this.wordsBagId = this.$route.params.wordsBagId;
     },
     computed: {
         ...mapState('account', ['status'])
@@ -44,11 +46,17 @@ export default {
         ...mapActions('words', ['add']),
         handleSubmit (e) {
             this.submitted = true;
-            const {language, spelling, name } = this;
-            if (language && spelling && name) {
-                this.add({ language, spelling, name })
+            const {spelling, wordsBagId } = this;
+            if (spelling  && wordsBagId) {
+                this.add({ spelling , wordsBagId});
+                this.spelling = '';
+                this.submitted = false;
+                e.target.reset();
             }
         }
+    },
+    components: {
+        Slide
     }
 };
 </script>

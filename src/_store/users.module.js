@@ -1,7 +1,9 @@
 import { userService } from '../_services';
 
 const state = {
-    all: {}
+    all: {},
+    languages: {},
+    selectedLanguage: null
 };
 
 const actions = {
@@ -15,6 +17,16 @@ const actions = {
             );
     },
 
+    getLanguages({ commit }) {
+        commit('getLanguagesRequest');
+
+        userService.getLanguages()
+            .then(
+                languages => commit('getLanguagesSuccess', languages),
+                error => commit('getLanguagesFailure', error)
+            );
+    },
+
     delete({ commit }, id) {
         commit('deleteRequest', id);
 
@@ -23,18 +35,36 @@ const actions = {
                 user => commit('deleteSuccess', id),
                 error => commit('deleteSuccess', { id, error: error.toString() })
             );
-    }
+    },
+
+    setLanguageId({ commit }, id) {
+        console.log('ustawiam');
+        console.log(id);
+        commit('setLanguageIdRequest', id);
+    },
 };
 
 const mutations = {
+    setLanguageIdRequest(state, id) {
+        state.selectedLanguage = { id: id };
+    },
+    getLanguagesRequest(state) {
+        state.languages = { loading: true };
+    },
     getAllRequest(state) {
         state.all = { loading: true };
     },
     getAllSuccess(state, users) {
         state.all = { items: users };
     },
+    getLanguagesSuccess(state, languages) {
+        state.languages = { items: languages };
+    },
     getAllFailure(state, error) {
         state.all = { error };
+    },
+    getLanguagesFailure(state, error) {
+        state.languages = { error };
     },
     deleteRequest(state, id) {
         // add 'deleting:true' property to user being deleted
