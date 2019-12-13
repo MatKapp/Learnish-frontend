@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --open"
   },
   "dependencies": {
-    "npm": "^6.9.0",
+    "npm": "^6.13.4",
     "vee-validate": "^2.1.0-beta.6",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
